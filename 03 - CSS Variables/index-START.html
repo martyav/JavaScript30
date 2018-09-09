@@ -61,7 +61,7 @@
     function handleUpdate() {
       const suffix = this.dataset.sizing || ''; // an object that contains all the custom attributes. Each attribute is a property on the object
       
-      document.documentElement.style.setProperty(`${this.name}, ${this.value}${suffix}`);
+      document.documentElement.style.setProperty(`--${this.name}`, this.value + suffix);
     }
     
     inputs.forEach(input => input.addEventListener('mousemove', handleUpdate))
