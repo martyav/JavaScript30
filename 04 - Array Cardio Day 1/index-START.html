@@ -76,10 +76,10 @@
     // 7. sort Exercise
     // Sort the people alphabetically by last name
     const sortStrings = function(current, next) {
-      let currentArr = current.split(",");
-      let nextArr = next.split(",");
+      let [currentFirst, currentLast] = current.split(",");
+      let [nextFirst, nextLast] = next.split(",");
 
-      return currentArr[0] > nextArr[0] ? 1 : -1;
+      return currentLast > nextLast ? 1 : -1;
     }
 
     let sortedByName = people.sort(sortStrings);
@@ -88,6 +88,18 @@
     // 8. Reduce Exercise
     // Sum up the instances of each of these
     const data = ['car', 'car', 'truck', 'truck', 'bike', 'walk', 'car', 'van', 'bike', 'walk', 'car', 'van', 'car', 'truck' ];
+
+    
+    let sumUpVehicles = data.reduce(function(dict, item) {
+      if (!dict[item]) {
+        dict[item] = 0;
+      }
+
+      dict[item]++;
+
+      return dict;
+    }, {}); // we use an empty object to total up our items
+    console.table(sumUpVehicles);
 
   </script>
 </body>
