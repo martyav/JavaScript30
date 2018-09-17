@@ -18,28 +18,58 @@
     }
 
     // Regular
+    console.log('Hello, world');
 
     // Interpolated
+    console.log('Hello, %s', 'Mars');
 
     // Styled
+    console.log('%c Hi whats up', 'background: red');
 
     // warning!
+    console.warn('Bad! Warning! Bad!'); // stacktrace
 
     // Error :|
+    console.error('Oopsie doodle!'); // stacktrace
 
     // Info
+    console.info('Infoooooo!'); 
 
     // Testing
+    console.assert(1 == 2, "that's wrong"); // only fires if false
 
     // clearing
+    console.clear();
 
     // Viewing DOM Elements
+    console.dir(p); //shows properties, methods, and children on element
+    console.log(p); // shows the element itself 
 
     // Grouping together
+    for (dog of dogs) {
+      console.group(`${dog.name}`);
+      console.log(`${dog.name}`);
+      console.groupEnd(`${dog.name}`);
+    } // consolidates
 
     // counting
+    console.count('First');
+    console.count('Frog kart');
+    console.count('Oregon Trail');
+    console.count('First');
+    console.count('Frog kart');
+    console.count('Oregon Trail');
+    console.count('Oregon Trail');
+    console.count('First');
+    console.count('Frog kart');
+    console.count('Oregon Trail');
+    console.count('Frog kart');
+    console.count('Frog kart');
+    console.count('Frog kart');
 
     // timing
+    console.time('Time Start');
+    console.timeEnd('Time End');
 
   </script>
 </body>
