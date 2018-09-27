@@ -7,6 +7,20 @@
 </head>
 <body>
 <script>
+  let sequence = [];
+  const secretCode = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'b', 'a', 'Enter'];
+
+  window.addEventListener('keyup', (e) => {
+    sequence.push(e.key);
+    console.log(e.key);
+    console.log(sequence);
+
+    sequence.splice(-secretCode.length - 1, sequence.length - secretCode.length);
+
+    if (sequence.join() === secretCode.join()) {
+      console.log("DING DING"); // only works if user opens page and does nothing but enter code...not unlike the original Konami code, admittedly
+    }
+  });
 </script>
 </body>
 </html>
