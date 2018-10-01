@@ -15,10 +15,17 @@
     // and we want to make a copy of it.
 
     // You might think we can just do something like this:
+    
+    let copy = players;
 
     // however what happens when we update that array?
+    
+    copy.push('Liz');
 
     // now here is the problem!
+    
+    //console.table(players);
+    //console.table(copy);
 
     // oh no - we have edited the original array too!
 
@@ -28,10 +35,20 @@
 
     // one way
 
+    const safeCopy = players.slice();
+    console.table(safeCopy);
+
     // or create a new array and concat the old one in
+    
+    let goodCopy = [];
+    goodCopy.concat(players);
+    //console.table(goodCopy);
 
     // or use the new ES6 Spread
 
+    let gooderCopy = [...players];
+    //console.table(gooderCopy);
+    
     // now when we update it, the original one isn't changed
 
     // The same thing goes for objects, let's say we have a person object
@@ -44,7 +61,11 @@
 
     // and think we make a copy:
 
+    const dude = person;
+
     // how do we take a copy instead?
+
+    const human = Object.assign({}, person, { number: 99, age: 12 });
 
     // We will hopefully soon see the object ...spread
 
