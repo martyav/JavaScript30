@@ -1,19 +1,31 @@
 
 function playSound(event) {
-    const code = event.keyCode;
-    const uiButton = document.querySelector(`.key[data-key="${code}"]`);    
-    const audio = document.querySelector(`audio[data-key="${code}"]`);
+    let code = null;
+    let uiButton = null;
+    let audio = null;
     
-    console.log(uiButton);
-    
+    if (event.type === 'keydown') {
+        code = event.keyCode;
+        uiButton = document.querySelector(`.key[data-key="${code}"]`);    
+    } else if (event.type === 'click') {
+        if (event.target === 'button.key') {
+            code = event.target.dataset.key;
+            uiButton = event.target;
+        } else {
+            code = event.target.parentElement.dataset.key;
+            uiButton = event.target.parentElement;
+        }
+    }
+
+    audio = document.querySelector(`audio[data-key="${code}"]`);
+        
     try {
         audio.currentTime = 0; // rewind on every press
         audio.play();
         uiButton.classList.add('playing');
     }
     catch (error) {
-        const key = event.key;
-        console.log(`${error}.\nProperty is attached to null because there is no available audio for a press from key ${key}, with key code ${code}`);
+        console.log(`${error}.\nProperty is attached to null because there is no available audio for a press from key with key code ${code}`);
     }
 }
 
@@ -24,10 +36,11 @@ function removeTransition(event) {
 }
 
 function setUpInteractions() {
-    console.log("!!")
     const keys = Array.from(document.querySelectorAll('.key'));
+
     window.addEventListener('keydown', playSound);
     keys.forEach(key => key.addEventListener('transitionend', removeTransition));
+    keys.forEach(key => key.onclick = playSound);
 }
 
 window.onload = setUpInteractions;
